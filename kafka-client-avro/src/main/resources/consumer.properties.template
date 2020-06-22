@@ -1,0 +1,29 @@
+# Topic to use
+topic=machine-data-avro
+
+# Kafka consumer properties
+bootstrap.servers=<BROKER1>:9093,<BROKER2>:9093,<BROKER3>:9093
+security.protocol=SASL_SSL
+sasl.mechanism=PLAIN
+ssl.truststore.location=<TRUSTSTORE_PATH>
+sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required username="<MACHINE_USER_NAME>" password="<MACHINE_USER_PASSWORD>";
+
+# KafkaAvroDeserializer properties
+schema.registry.url=<SCHEMA_REGISTRY_ENDPOINT>/api/v1
+key.deserializer=org.apache.kafka.common.serialization.StringDeserializer
+value.deserializer=com.hortonworks.registries.schemaregistry.serdes.avro.kafka.KafkaAvroDeserializer
+
+# Authentication credentials for connecting to the Schema Registry service
+schema.registry.auth.username=<MACHINE_USER_NAME>
+schema.registry.auth.password=<MACHINE_USER_PASSWORD>
+
+# Consumer group id
+group.id=machine-data-1
+
+# The property below specifies which schema version to use when deserializing messages
+# from a topic. Format is the JSON representation of a Map(topic_name -> schema_version).
+# If not specified, the client will use the same schema version used by the producer.
+#schemaregistry.reader.schema.versions={"machine-data-avro": 2}
+
+# End-to-end latency interceptor
+#interceptor.classes=com.hortonworks.smm.kafka.monitoring.interceptors.MonitoringConsumerInterceptor

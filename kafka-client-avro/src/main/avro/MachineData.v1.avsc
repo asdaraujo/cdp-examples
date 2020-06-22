@@ -1,0 +1,47 @@
+{
+  "type": "record",
+  "namespace": "com.cloudera.examples",
+  "name": "MachineData",
+  "doc": "Machine utilization metrics",
+  "fields": [
+    {
+      "name": "timestamp",
+      "doc": "Metrics timestamp",
+      "type": "long"
+    },
+    {
+      "name": "hostname",
+      "doc": "Host name of the source machine",
+      "type": "string"
+    },
+    {
+      "name": "counters",
+      "doc": "Machine counters",
+      "type": {
+        "type": "array",
+        "items": {
+          "type" : "record",
+          "name" : "Counter",
+          "fields" : [
+            {
+              "name": "name",
+              "doc": "Name of the counter",
+              "type": "string"
+            },
+            {
+              "name": "value",
+              "doc": "Value of the counter",
+              "type": "long"
+            },
+            {
+              "name": "unit",
+              "doc": "Unit of the counter value",
+              "type": ["string", "null"],
+              "default": "null"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

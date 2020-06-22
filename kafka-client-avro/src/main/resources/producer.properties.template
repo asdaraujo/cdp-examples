@@ -1,0 +1,32 @@
+# Topic to use
+topic=machine-data-avro
+
+# Kafka producer properties
+bootstrap.servers=<BROKER1>:9093,<BROKER2>:9093,<BROKER3>:9093
+security.protocol=SASL_SSL
+sasl.mechanism=PLAIN
+ssl.truststore.location=<TRUSTSTORE_PATH>
+sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required username="<MACHINE_USER_NAME>" password="<MACHINE_USER_PASSWORD>";
+
+# KafkaAvroSerializer properties
+schema.registry.url=<SCHEMA_REGISTRY_ENDPOINT>/api/v1
+key.serializer=org.apache.kafka.common.serialization.StringSerializer
+value.serializer=com.hortonworks.registries.schemaregistry.serdes.avro.kafka.KafkaAvroSerializer
+
+# Authentication credentials for connecting to the Schema Registry service
+schema.registry.auth.username=<MACHINE_USER_NAME>
+schema.registry.auth.password=<MACHINE_USER_PASSWORD>
+
+# Below property enable storing of the schema identifier in the message header
+# The header key is, by default, value.schema.version.id.
+# The identifier has 5 bytes: the first byte is the protocolId and the next
+# 4 bytes are the schemaVersionId (not the version number, but the internal
+# ID for the schema version object). If schemaVersionId is greater than
+# Integer.MAX_VALUE, then 8 bytes will be used instead
+store.schema.version.id.in.header=true
+
+# Client ID
+client.id=producer-java
+
+# End-to-end latency interceptor
+#interceptor.classes=com.hortonworks.smm.kafka.monitoring.interceptors.MonitoringProducerInterceptor
