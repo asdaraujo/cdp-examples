@@ -522,7 +522,7 @@ image::images/schema-registry-endpoint.png[width=600]
 The Kafka client will need a truststore to successfully connect to the secure Kafka cluster. Follow the steps below to create the truststore:
 
 . Navigate to *Management Console > Environments*, and select the environment where your Kafka cluster is.
-. Click *Actions > Get FreeIPA Certificate*. This will download the FreeIPA certificate file (`ca.crt`) to your computer.
+. Click on the *Summary* tab, scroll to the *FreeIPA* section and click *Actions > Get FreeIPA Certificate*. This will download the FreeIPA certificate file (`<environment_name>.crt`) to your computer.
 . Run the following command to create the truststore:
 +
 [source,shell]
@@ -534,7 +534,7 @@ keytool \
   -keystore truststore.jks \
   -storepass changeit \
   -alias freeipa-ca \
-  -file /path/to/ca.crt
+  -file /path/to/<environment_name>.crt
 ----
 
 === Defining Schema Registry access policies
@@ -792,13 +792,13 @@ To enabled the application to start logging end-to-end latency metrics we use an
 
 Follow the steps below to enable the monitoring for the sample Java application and verify the latency in SMM:
 
-. Edit the `consumer.property` file and uncomment the following line:
+. Edit the `consumer.properties` file and uncomment the following line:
 +
 [source,properties]
 ----
 interceptor.classes=com.hortonworks.smm.kafka.monitoring.interceptors.MonitoringConsumerInterceptor
 ----
-. Edit the `producer.property` file and uncomment the following line:
+. Edit the `producer.properties` file and uncomment the following line:
 +
 [source,properties]
 ----

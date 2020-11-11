@@ -9,7 +9,7 @@ ssl.truststore.location=<TRUSTSTORE_PATH>
 sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required username="<MACHINE_USER_NAME>" password="<MACHINE_USER_PASSWORD>";
 
 # KafkaAvroDeserializer properties
-schema.registry.url=<SCHEMA_REGISTRY_ENDPOINT>/api/v1
+schema.registry.url=<SCHEMA_REGISTRY_ENDPOINT>
 key.deserializer=org.apache.kafka.common.serialization.StringDeserializer
 value.deserializer=com.hortonworks.registries.schemaregistry.serdes.avro.kafka.KafkaAvroDeserializer
 
