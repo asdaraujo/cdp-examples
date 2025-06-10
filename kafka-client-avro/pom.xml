@@ -18,10 +18,10 @@
 
         <avro.version>1.9.2</avro.version>
         <slf4j.version>1.7.30</slf4j.version>
-        <kafka.version>2.3.0</kafka.version>
+        <kafka.version>3.4.1.7.1.9.0-387</kafka.version>
         <logback.version>1.2.3</logback.version>
-        <schema.registry.version>0.9.0</schema.registry.version>
-        <monitoring.interceptors.version>2.1.0.7.1.1.0-565</monitoring.interceptors.version>
+        <schema.registry.version>0.10.0.7.1.9.0-387</schema.registry.version>
+        <monitoring.interceptors.version>2.3.0.7.1.9.0-387</monitoring.interceptors.version>
     </properties>
 
     <repositories>

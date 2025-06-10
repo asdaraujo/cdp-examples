@@ -42,6 +42,7 @@ import java.util.stream.Stream;
 
 import static com.hortonworks.registries.schemaregistry.serdes.avro.AvroSnapshotSerializer.SERDES_PROTOCOL_VERSION;
 import static com.hortonworks.registries.schemaregistry.serdes.avro.SerDesProtocolHandlerRegistry.CURRENT_PROTOCOL;
+//import static com.hortonworks.registries.schemaregistry.serdes.json.kafka.KafkaJsonSerializer;
 
 public class MachineDataProducer {
     private static final Logger LOG = LoggerFactory.getLogger(MachineDataProducer.class);
@@ -114,7 +115,7 @@ public class MachineDataProducer {
 
     public static void main(String[] args) throws IOException, SchemaNotFoundException {
         if (args.length < 1 || args.length > 2) {
-            System.err.println("Syntax: " + MachineDataProducer.class.getName() + " <producer_properties_file> [<]schema_file]");
+            System.err.println("Syntax: " + MachineDataProducer.class.getName() + " <producer_properties_file> [schema_file]");
             System.exit(1);
         }
         String propsFile = args[0];

@@ -176,6 +176,7 @@ In this example we will use LDAP authentication. We need to provide the client w
 
 * `security.protocol` and `sasl.mechanism` - indicate to the client the security protocol and authentication mechanism to use
 * `ssl.truststore.location` - truststore required for the client to be able to trust the brokers' certificates
+* `ssl.truststore.password` - truststore password
 * `sasl.jaas.config` - LDAP credentials to use for authentication
 
 All the Kafka hosts deployed by CDP already have a valid truststore deployed at `/var/lib/cloudera-scm-agent/agent-cert/cm-auto-global_truststore.jks`. We will use this truststore in this example. Later we will look at how to create a truststore from scratch.
@@ -191,6 +192,7 @@ Let's produce some data to Kafka. Execute the following steps on your SSH sessio
 security.protocol=SASL_SSL
 sasl.mechanism=PLAIN
 ssl.truststore.location=/var/lib/cloudera-scm-agent/agent-cert/cm-auto-global_truststore.jks
+ssl.truststore.password=MyTruststorePassword
 sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required username="srv_kafka-client" password="SuperSecretPassword";
 ----
 . IMPORTANT: Since the file above contains sensitive information, ensure that its permissions are set restrictively:
@@ -285,6 +287,7 @@ security.protocol=SASL_SSL
 sasl.mechanism=GSSAPI
 sasl.kerberos.service.name=kafka
 ssl.truststore.location=/var/lib/cloudera-scm-agent/agent-cert/cm-auto-global_truststore.jks
+ssl.truststore.password=MyTruststorePassword
 sasl.jaas.config=com.sun.security.auth.module.Krb5LoginModule required useTicketCache=true;
 ----
 . Before connecting to Kafka you first need to authenticate successfully with Kerberos to acquire a valid Kerberos ticket. You can use `kinit` for that. Run the commands below, replacing `srv_kafka-client` with your Machine User name. When prompted for the password, provide the Workload Password that you set previously.
@@ -371,6 +374,7 @@ security.protocol=SASL_SSL
 sasl.mechanism=GSSAPI
 sasl.kerberos.service.name=kafka
 ssl.truststore.location=/var/lib/cloudera-scm-agent/agent-cert/cm-auto-global_truststore.jks
+ssl.truststore.password=MyTruststorePassword
 sasl.jaas.config=com.sun.security.auth.module.Krb5LoginModule required useKeyTab=true keyTab="./kafka-client.keytab" principal="srv_kafka-client@XYZ.SITE";
 ----
 +
